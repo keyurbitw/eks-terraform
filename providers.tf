@@ -12,6 +12,5 @@ provider "aws" {
 terraform {
   backend "s3" {
     bucket = "terraform-tf-state"
-    key    = var.eks-cluster-name
   }
 }
