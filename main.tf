@@ -32,19 +32,9 @@ module "eks-master" {
   eks-master-role-arn = module.eks-master-role.eks-master-role-arn
 }
 
-data "aws_ami" "eks-worker" {
-  provider = aws.aws-cloud
-  filter {
-    name   = "name"
-    values = ["amazon-eks-node-v*"]
-  }
-  most_recent = true
-  owners      = ["602401143452"]
-}
-
 module "eks-worker-node" {
   source                            = "./modules/eks-worker-node"
-  worker-node-ami-id                = data.aws_ami.eks-worker.id
+  worker-node-ami-id                = "ami-005995a182420df74"
   eks-vpc-id                        = module.eks-vpc.eks-cluster-vpc-id
   eks-cluster-endpoint-url          = module.eks-master.eks-cluster-endpoint-url
   eks-cluster-ca                    = module.eks-master.eks-cluster-ca
