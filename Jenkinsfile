@@ -1,5 +1,5 @@
 pipeline {
-  agent { docker {image 'keyurbitw/terraform-docker'}}
+  agent { label 'docker-slave'}
   stages {
     stage('Download the Cluster Spec') {
       steps{
