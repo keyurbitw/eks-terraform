@@ -8,3 +8,11 @@ provider "aws" {
   profile = "default"
   region  = var.aws-region
 }
+
+terraform {
+  backend "s3" {
+    bucket = "terraform-tf-state"
+    key    = "cluster-state/remote-state"
+    region = "us-west-1"
+  }
+}
